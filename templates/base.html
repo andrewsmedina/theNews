@@ -21,6 +21,14 @@
                 <a href="">some naviagation stuff</a>
                 <span class="spacer">|</span>
                 <a href="">some other nav item</a>
+
+                {% if not user.is_authenticated %}
+                    <span class="spacer">|</span>
+                    <a href="{% url 'author:signin' %}">Sign In</a>
+                {% else %}
+                    <span class="spacer">|</span>
+                    <a href="{% url 'author:signout' %}">Sign Out</a>
+                {%  endif  %}
             </nav>
 
             <div class="content">
