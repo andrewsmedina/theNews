@@ -2,7 +2,14 @@
 
 {% block content %}
 
-<h1>{{ object.title | title }}</h1>
-<div>{{ object.body | safe }}</div>
+    <h1>{{ object.title | title }}</h1>
+    <div class="by-line">
+         {{ object.pub_date }}
+        {% if object.author.first_name %}
+            - By: {{ object.author.first_name | title }} {{ object.author.last_name | title }}
+        {% endif %}
+    </div>
+
+    <div class="content">{{ object.body | safe }}</div>
 
 {% endblock %}

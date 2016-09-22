@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
@@ -9,6 +10,11 @@ class Article(models.Model):
     body = models.TextField()
     pub_date = models.DateField(auto_created=True)
     updated_date = models.DateField(auto_now=True)
+    author = models.ForeignKey(User,
+                               null=True,
+                               blank=True,
+                               default=None,
+                               on_delete=models.SET_NULL)
 
     def save(self, *args, **kwargs):
         if not self.id:
