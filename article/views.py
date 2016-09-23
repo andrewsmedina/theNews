@@ -16,6 +16,7 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
+        context['promoted'] = Article.objects.filter(promoted=True)
         context['latest_articles'] = Article.objects.all()[:5]
         return context
 

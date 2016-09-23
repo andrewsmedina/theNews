@@ -11,5 +11,14 @@
             </li>
         {%  endfor %}
     </ul>
+    
+    {% for promote in promoted %}
+        <hr>
+        <h3><a href="{{ promote.get_absolute_url }}">
+            {{ promote.title | title }}
+        </a></h3>
+        {{ promote.body | safe }}
+    {% endfor %}
+
 
 {%  endblock %}

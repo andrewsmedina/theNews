@@ -23,6 +23,7 @@ class Article(models.Model):
     pub_date = models.DateField(default=datetime.date.today)
     updated_date = models.DateField(default=datetime.date.today)
     tags = models.ManyToManyField(Tag)
+    promoted = models.BooleanField(default=False)
     author = models.ForeignKey(User,
                                null=True,
                                blank=True,
