@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ author.first_name }} {{ author.last_name }}</h2>
+    {%  if user == author %}
+        <a href="{% url 'author:edit_profile' author.profile_set.all.0.pk %}" class="btn btn-xs btn-info">
+            edit
+        </a>
+    {% endif %}
+    <div class="media">
+      <div class="media-left">
+        <a href="#">
+          <img class="media-object img-rounded"
+               src="{{ author.profile_set.all.0.pic.url }}"
+               alt="{{ author.first_name }} {{ author.last_name }}">
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">Bio</h4>
+        {{ author.profile_set.all.0.bio | safe }}
+      </div>
+    </div>
+    <h3>Latest Articles</h3>
+    <table class="table table-bordered table-condensed table-striped" >
+        {% for article in author.article_set.all|slice:"10" %}
+            <tr>
+                <td>
+                    <a href="{{ article.get_absolute_url }}">
+                        {{ article.title | title}}
+                    </a>
+                </td>
+                <td>
+                    {% for tag in article.tags.all %}
+                        <a href="{% url 'tag_article_list' tag.pk %}">{{ tag.name }}</a>,
+                    {% endfor %}
+                </td>
+            <td>{{ article.pub_date }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

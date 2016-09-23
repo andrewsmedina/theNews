@@ -4,10 +4,16 @@
 
     <h1>{{ object.title | title }}</h1>
     <div class="by-line">
-         {{ object.pub_date }}
+        <img src="{{ object.author.profile_set.all.0.pic.url }}"
+                 class="img-circle" height="50px">
+
         {% if object.author.first_name %}
-            - By: {{ object.author.first_name | title }} {{ object.author.last_name | title }}
+            <a href="{% url 'author:profile' object.author.pk %}">
+                By: {{ object.author.first_name | title }} {{ object.author.last_name | title }}
+            </a>
         {% endif %}
+         - {{ object.pub_date }}
+
         {% if user == article.author %}
             <a href="{% url 'update_article' article.pk %}" class='btn btn-xs btn-info'>
                 edit
