@@ -27,6 +27,8 @@
                     <a href="{% url 'author:signin' %}">Sign In</a>
                 {% else %}
                     <span class="spacer">|</span>
+                    <a href="{% url 'article_new' %}">Post</a>
+                    <span class="spacer">|</span>
                     <a href="{% url 'author:signout' %}">Sign Out</a>
                 {%  endif  %}
             </nav>

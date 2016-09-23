@@ -20,4 +20,8 @@ urlpatterns = [
     url(r'^(?P<year>[0-9]{4})/(?P<month>[-\w]+)/(?P<day>[0-9]+)/$',
         views.ArticleDayList.as_view(),
         name='article_day_list'),
+
+    url(r'^article/new/$', views.NewArticleView.as_view(), name='article_new'),
+    url('^article/update/(?P<pk>[\w-]+)$', views.UpdateArticleView.as_view(),
+        name='update_article'),
     ]

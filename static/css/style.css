@@ -42,8 +42,6 @@ nav .spacer {
 
 .container {
     background-color: rgb(255, 250, 240);
-    border-left: 1px solid #eee;
-    border-right: 1px solid #eee;
     font-size: 14px;
     font-family: 'Libre Baskerville', serif;
     padding: 10px;

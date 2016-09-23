@@ -3,13 +3,17 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 
+import datetime
+
 # Create your models here.
 class Article(models.Model):
-    title = models.CharField(max_length=255)
-    slug = models.CharField(max_length=255, blank=True, null=True)
+    title = models.CharField(max_length=255,
+                             unique_for_date='pub_date')
+    slug = models.CharField(max_length=255,
+                            blank=True, null=True)
     body = models.TextField()
-    pub_date = models.DateField(auto_created=True)
-    updated_date = models.DateField(auto_now=True)
+    pub_date = models.DateField(default=datetime.date.today)
+    updated_date = models.DateField(default=datetime.date.today)
     author = models.ForeignKey(User,
                                null=True,
                                blank=True,
@@ -30,3 +34,6 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ['-pub_date']

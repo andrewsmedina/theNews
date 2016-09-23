@@ -1,0 +1,41 @@
+{%  extends 'base.html' %}
+{%  load staticfiles %}
+
+{% block content %}
+
+    <form action="#" method="post" name="newArticle" novalidate>
+        {%  csrf_token %}
+        {{ form }}
+        <br>
+        <button class="btn btn-info">Submit</button>
+    </form>
+
+    <script type="text/javascript"
+            src="{% static "tinymce/js/tinymce/tinymce.min.js" %}"></script>
+    <script>
+    tinyMCE.init({
+        mode: "textareas",
+        theme: "modern",
+        plugins: "directionality,paste,searchreplace,codesample,hr,media,image,wordcount,link,advlist",
+        language: "{{ language }}",
+        directionality: "{{ directionality }}",
+        spellchecker_languages : "{{ spellchecker_languages }}",
+        spellchecker_rpc_url : "{{ spellchecker_rpc_url }}",
+        codesample_languages: [
+            {text: 'HTML/XML', value: 'markup'},
+            {text: 'JavaScript', value: 'javascript'},
+            {text: 'CSS', value: 'css'},
+            {text: 'PHP', value: 'php'},
+            {text: 'Ruby', value: 'ruby'},
+            {text: 'Python', value: 'python'},
+            {text: 'Java', value: 'java'},
+            {text: 'C', value: 'c'},
+            {text: 'C#', value: 'csharp'},
+            {text: 'C++', value: 'cpp'}
+        ],
+        toolbar: "codesample",
+});
+    </script>
+
+
+{%  endblock %}
