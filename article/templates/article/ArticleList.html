@@ -1,11 +1,46 @@
 {%  extends 'base.html' %}
 
 {% block content %}
-    <ul>
+    <h2>{{ title | title }}</h2>
+
+    {% if is_paginated %}
+        <div class="text-center">
+            <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li>
+                    <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                </li>
+            {% endif %}
+                <li class="">
+                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                </li>
+            {% if page_obj.has_next %}
+                <li>
+                    <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                </li>
+            {% endif %}
+            </ul>
+        </div>
+
+    {% endif %}
+
+    <table class="table table-condensed table-bordered table-striped">
         {% for article in object_list %}
-            <li><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></li>
+            <tr>
+                <td>
+                    <a href="{{ article.get_absolute_url }}">
+                        {{ article.title | title}}
+                    </a>
+                </td>
+                <td>
+                    {% for tag in article.tags.all %}
+                        <a href="{% url 'tag_article_list' tag.pk %}">{{ tag.name }}</a>,
+                    {% endfor %}
+                </td>
+            <td>{{ article.pub_date }}</td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 
 
 {%  endblock %}

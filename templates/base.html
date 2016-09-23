@@ -18,9 +18,9 @@
             <nav>
                 <a href="/"><span class="glyphicon glyphicon-home"></span></a>
                 <span class="spacer">|</span>
-                <a href="">some naviagation stuff</a>
+                <a href="{% url 'tag_list' %}">Categories</a>
                 <span class="spacer">|</span>
-                <a href="">some other nav item</a>
+                <a href="{% url 'all_articles' %}">All Articles</a>
 
                 {% if not user.is_authenticated %}
                     <span class="spacer">|</span>
@@ -36,6 +36,12 @@
             <div class="content">
                 {%  block content %} {%  endblock %}
             </div>
+
+            <footer>
+                <div class="block"> bottom 1</div>
+                <div class="block"> bottom 2</div>
+                <div class="block"> bottom 3</div>
+            </footer>
 
         </div>
         <script src="https://code.jquery.com/jquery-3.1.0.min.js"

@@ -21,7 +21,17 @@ urlpatterns = [
         views.ArticleDayList.as_view(),
         name='article_day_list'),
 
-    url(r'^article/new/$', views.NewArticleView.as_view(), name='article_new'),
-    url('^article/update/(?P<pk>[\w-]+)$', views.UpdateArticleView.as_view(),
+    url(r'^article/new/$', views.NewArticleView.as_view(),
+        name='article_new'),
+
+    url('^article/update/(?P<pk>[\w-]+)/$', views.UpdateArticleView.as_view(),
         name='update_article'),
+
+    url(r'^tag/(?P<pk>[\w-]+)/$', views.TagArticleListView.as_view(),
+        name='tag_article_list'),
+
+    url(r'^tag/$', views.TagListView.as_view(), name='tag_list'),
+
+    url(r'^all/$', views.AllArticlesView.as_view(), name='all_articles')
+
     ]

@@ -18,9 +18,16 @@
     }
 }
 
+html {
+    height: 100%;
+}
+
 body {
     background-color: rgb(255, 251, 240);
+    background-image: url(/static/img/vintage-newspaper-print.jpg);
+    background-position: center;
     margin: 0;
+    height: 100%
 }
 
 nav {
@@ -39,23 +46,32 @@ nav .spacer {
     text-align: center;
 
 }
+footer {
+    background-color: rgb(255, 250, 240);
+    display: block;
+}
+
+.block {
+    display: inline-block;
+}
 
 .container {
     background-color: rgb(255, 250, 240);
+    display:block;
     font-size: 14px;
     font-family: 'Libre Baskerville', serif;
     padding: 10px;
-    height: 100%
+    min-height: 100%;
 }
 
 .page-header {
     text-align: center;
     font-family: 'UnifrakturCook', cursive;
-
 }
 
 .content {
-    margin-top: 10px;
+    border-top: 1px solid #eee;
+    margin-top: 20px;
 }
 
 .content p {
@@ -64,4 +80,10 @@ nav .spacer {
 
 .by-line {
     color: rgb(51, 122, 183);
+}
+
+.block {
+    display: inline-block;
+    width: 33%;
+    text-align: center;
 }

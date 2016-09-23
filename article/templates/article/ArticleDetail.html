@@ -8,8 +8,21 @@
         {% if object.author.first_name %}
             - By: {{ object.author.first_name | title }} {{ object.author.last_name | title }}
         {% endif %}
+        {% if user == article.author %}
+            <a href="{% url 'update_article' article.pk %}" class='btn btn-xs btn-info'>
+                edit
+            </a>
+        {% endif %}
     </div>
+    <hr>
 
-    <div class="content">{{ object.body | safe }}</div>
+    <div class="">{{ object.body | safe }}</div>
+
+    <nav>
+        {% for tag in object.tags.all %}
+            <a href="{% url 'tag_article_list' tag.pk %}">{{ tag.name }}</a>
+            <span class="spacer">|</span>
+        {%  endfor %}
+    </nav>
 
 {% endblock %}

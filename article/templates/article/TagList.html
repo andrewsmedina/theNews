@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{%  block content %}
+    <h2>Category Tags</h2>
+    <table class="table table-condensed table-bordered table-striped">
+        <thread>
+            <tr>
+                <th>
+                    Tag
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>#</th>
+            </tr>
+        </thread>
+        {% for tag in object_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'tag_article_list' tag.pk %}">{{ tag | upper}}</a>
+                </td>
+                <td>
+                    {{ tag.description }}
+                </td>
+                <td> {{ tag.article_set.all.count }}</td>
+            </tr></li>
+        {%  endfor %}
+    </table>
+{% endblock %}
