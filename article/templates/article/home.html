@@ -17,6 +17,18 @@
         <h3><a href="{{ promote.get_absolute_url }}">
             {{ promote.title | title }}
         </a></h3>
+        <div class="by-line">
+         {{ promote.pub_date }}
+        {% if promote.author.first_name %}
+            - By: {{ promote.author.first_name | title }} {{ promote.author.last_name | title }}
+        {% endif %}
+        {% if user == promote.author %}
+            <a href="{% url 'update_article' promote.pk %}" class='btn btn-xs btn-info'>
+                edit
+            </a>
+        {% endif %}
+    </div>
+        <br>
         {{ promote.body | safe }}
     {% endfor %}
 

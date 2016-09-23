@@ -84,6 +84,7 @@ footer {
 
 .block {
     display: inline-block;
+    padding: 15px;
     width: 33%;
     text-align: center;
 }
